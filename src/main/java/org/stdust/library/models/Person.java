@@ -7,6 +7,9 @@ public class Person {
     private String name;
     private int yearOfBirth;
 
+    public Person() {
+
+    }
 
     public Person(int id, String name, int yearOfBirth) {
         this.id = id;
