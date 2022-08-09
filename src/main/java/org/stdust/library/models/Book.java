@@ -4,11 +4,11 @@ public class Book {
     private int bookId;
     private String name;
     private String author;
-    private String yearOfRelease;
+    private int yearOfRelease;
 
     public Book() {}
 
-    public Book(int bookId, String name, String author, String yearOfRelease) {
+    public Book(int bookId, String name, String author, int yearOfRelease) {
         this.bookId = bookId;
         this.name = name;
         this.author = author;
@@ -39,11 +39,11 @@ public class Book {
         this.author = author;
     }
 
-    public String getYearOfRelease() {
+    public int getYearOfRelease() {
         return yearOfRelease;
     }
 
-    public void setYearOfRelease(String yearOfRelease) {
+    public void setYearOfRelease(int yearOfRelease) {
         this.yearOfRelease = yearOfRelease;
     }
 }
