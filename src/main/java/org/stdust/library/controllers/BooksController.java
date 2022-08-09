@@ -7,19 +7,26 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.stdust.library.dao.BookDAO;
+import org.stdust.library.dao.PersonDAO;
 import org.stdust.library.models.Book;
+import org.stdust.library.models.Person;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("books")
 public class BooksController {
     private final BookDAO bookDAO;
-
-    //TO DO: Validate input fields when CREATING or EDITING new book
+    private final PersonDAO personDAO;
 
     @Autowired
-    public BooksController(BookDAO bookDAO) {
+    public BooksController(BookDAO bookDAO, PersonDAO personDAO) {
         this.bookDAO = bookDAO;
+        this.personDAO = personDAO;
     }
+
+
+    //TO DO: Validate input fields when CREATING or EDITING new book
 
     @GetMapping("")
     public String index(Model model) {
@@ -30,6 +37,15 @@ public class BooksController {
     @GetMapping("/{id}")
     public String create(Model model, @PathVariable("id") int id) {
         model.addAttribute("book", bookDAO.findByID(id));
+        Optional<Person> bookOwner = bookDAO.getBookOwner(id);
+
+        if (bookOwner.isPresent()) {
+            //Book is owned by somebody
+            model.addAttribute("owner", bookOwner.get());
+        } else {
+            //Book can be lent
+            model.addAttribute("people", personDAO.index());
+        }
         return "books/show";
     }
 
@@ -73,4 +89,5 @@ public class BooksController {
         bookDAO.delete(id);
         return "redirect:/books";
     }
+
 }

@@ -5,8 +5,10 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.stdust.library.models.Book;
+import org.stdust.library.models.Person;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class BookDAO {
@@ -38,5 +40,11 @@ public class BookDAO {
 
     public void delete(int id) {
         jdbcTemplate.update("DELETE FROM book WHERE book_id=?", id);
+    }
+
+    public Optional<Person> getBookOwner(int bookId) {
+        return jdbcTemplate.query("SELECT * FROM book JOIN person ON book.owner_id = person.id WHERE book.book_id=?",
+                        new Object[]{bookId}, new BeanPropertyRowMapper<>(Person.class))
+                .stream().findAny();
     }
 }
