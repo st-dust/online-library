@@ -14,7 +14,8 @@
 <div th:switch="${books.isEmpty()}">
     <p th:case="${true}" th:text="${person.getName()} + ' didn\'t take any book yet'">VALUE</p>
     <div th:case="${false}">
-        <p th:text="'Books lended by ' + ${person.getName()} + ':'">VALUE</p>
+        <b th:text="'Books lended by ' + ${person.getName()} + ':'">VALUE</b>
+        <br/>
         <table th:each="book : ${books}">
             <tr th:text="${book.getName()} + ', ' + ${book.getAuthor()} + ', ' + ${book.yearOfRelease}">VALUE</tr>
         </table>
