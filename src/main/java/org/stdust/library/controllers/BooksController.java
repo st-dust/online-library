@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.stdust.library.dao.BookDAO;
 import org.stdust.library.models.Book;
+import org.stdust.library.models.Person;
 
 @Controller
 @RequestMapping("books")
@@ -47,6 +48,23 @@ public class BooksController {
 
         bookDAO.save(book);
         return "redirect:books";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String edit(@PathVariable("id") int id, Model model) {
+        model.addAttribute("book", bookDAO.findByID(id));
+        return "books/edit";
+    }
+
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("book") @Valid Book book,
+                         BindingResult bindingResult, @PathVariable("id") int id) {
+        if (bindingResult.hasErrors()) {
+            return "books/edit";
+        }
+
+        bookDAO.update(id, book);
+        return "redirect:/books";
     }
 
 }
