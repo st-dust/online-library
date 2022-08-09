@@ -11,7 +11,7 @@ public class Person {
     @Size(min=2,max=30, message="Name should have at least 2 characters and max 30")
     private String name;
 
-    @Min(value = 0, message = "Age should be greater than zero")
+    @Min(value = 1900, message = "Age should be greater than zero")
     private int yearOfBirth;
 
     public Person() {

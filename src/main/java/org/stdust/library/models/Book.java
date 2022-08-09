@@ -1,8 +1,17 @@
 package org.stdust.library.models;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
 public class Book {
     private int bookId;
+
+    @NotEmpty(message = "Title can't be empty")
+    @Size(min=2,max=30, message="Title should have at least 2 characters and max 30")
     private String name;
+
+    @NotEmpty(message = "Author can't be empty")
+    @Size(min=2,max=30, message="Author name should have at least 2 characters and max 30")
     private String author;
     private int yearOfRelease;
 
