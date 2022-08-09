@@ -7,11 +7,16 @@
 </head>
 <body>
 
-<p th:text="'Name: ' + ${book.getName()}" id="name">VALUE</p>
+<p th:text="${book.getName()} + ', ' + ${book.getAuthor()} + ', ' + ${book.getAuthor()}">VALUE</p>
 
-<p th:text="'Authors: ' + ${book.getAuthor()}" id="author">VALUE</p>
+<div th:if="${owner}">
+    <span>Book is currently lent to: </span>
+    <span th:text="${owner.getName()}">VALUE</span>
+</div>
 
-<p th:text="'Year of release: ' + ${book.yearOfRelease}" id="yearOfRelease">VALUE</p>
+<div th:if="${people}">
+    <span>Book is currently free. Assign this book to who?</span>
+</div>
 
 <hr/>
 
