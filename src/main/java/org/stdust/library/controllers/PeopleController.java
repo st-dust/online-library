@@ -36,4 +36,11 @@ public class PeopleController {
         model.addAttribute("person", new Person());
         return "people/new";
     }
+
+    @PostMapping()
+    public String create(@ModelAttribute("person") @Valid Person person) {
+
+        personDAO.save(person);
+        return "redirect:people";
+    }
 }
