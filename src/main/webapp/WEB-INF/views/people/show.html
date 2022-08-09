@@ -7,17 +7,29 @@
 </head>
 <body>
 
-<p th:text="'Name: ' + ${person.getName()}" id="name">VALUE</p>
-
-<p th:text="'Year of birth: ' + ${person.getYearOfBirth()}" id="yearOfBirth">VALUE</p>
+<p th:text="${person.getName()} + ', born on ' + ${person.getYearOfBirth()}" id="name">VALUE</p>
 
 <hr/>
 
-<a th:href="@{/people/{id}/edit(id=${person.getId()})}">Edit</a>
+<div th:switch="${books.isEmpty()}">
+    <p th:case="${true}" th:text="${person.getName()} + ' didn\'t take any book yet'">VALUE</p>
+    <div th:case="${false}">
+        <p th:text="'Books lended by ' + ${person.getName()} + ':'">VALUE</p>
+        <table th:each="book : ${books}">
+            <tr th:text="${book.getName()} + ', ' + ${book.getAuthor()} + ', ' + ${book.yearOfRelease}">VALUE</tr>
+        </table>
+    </div>
+</div>
+
+<hr/>
+
+<from th:href="@{/people/{id}/edit(id=${person.getId()})}">
+    <input type="submit" value="Edit"/>
+</from>
 
 <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
     <input type="submit" value="Delete"/>
-
 </form>
+
 </body>
 </html>
