@@ -8,12 +8,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.stdust.library.dao.BookDAO;
 import org.stdust.library.models.Book;
-import org.stdust.library.models.Person;
 
 @Controller
 @RequestMapping("books")
 public class BooksController {
     private final BookDAO bookDAO;
+
+    //TO DO: Validate input fields when CREATING or EDITING new book
 
     @Autowired
     public BooksController(BookDAO bookDAO) {
@@ -39,7 +40,7 @@ public class BooksController {
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("book") @Valid Book book,
+    public String create(@ModelAttribute("book") Book book,
                          BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
@@ -57,7 +58,7 @@ public class BooksController {
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("book") @Valid Book book,
+    public String update(@ModelAttribute("book") Book book,
                          BindingResult bindingResult, @PathVariable("id") int id) {
         if (bindingResult.hasErrors()) {
             return "books/edit";
