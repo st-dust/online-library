@@ -90,4 +90,9 @@ public class BooksController {
         return "redirect:/books";
     }
 
+    @GetMapping("/{id}/release")
+    public String release(@PathVariable("id") int id) {
+        bookDAO.releaseBook(id);
+        return "redirect:/books/" + id;
+    }
 }

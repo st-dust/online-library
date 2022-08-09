@@ -47,4 +47,8 @@ public class BookDAO {
                         new Object[]{bookId}, new BeanPropertyRowMapper<>(Person.class))
                 .stream().findAny();
     }
+
+    public void releaseBook(int id) {
+        jdbcTemplate.update("UPDATE book SET owner_id=NULL WHERE book_id=?", id);
+    }
 }
