@@ -35,7 +35,7 @@ public class BooksController {
     }
 
     @GetMapping("/{id}")
-    public String create(Model model, @PathVariable("id") int id) {
+    public String create(@PathVariable("id") int id, Model model, @ModelAttribute("person") Person person) {
         model.addAttribute("book", bookDAO.findByID(id));
         Optional<Person> bookOwner = bookDAO.getBookOwner(id);
 
@@ -94,5 +94,13 @@ public class BooksController {
     public String release(@PathVariable("id") int id) {
         bookDAO.releaseBook(id);
         return "redirect:/books/" + id;
+    }
+
+    @PatchMapping("/{bookId}/assign")
+    public String assign(@PathVariable("bookId") int bookId,
+                         @ModelAttribute("person") Person selectedPerson) {
+
+        bookDAO.assignBook(selectedPerson,bookId);
+        return "redirect:/books/" + bookId;
     }
 }

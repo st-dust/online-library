@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -18,8 +18,18 @@
     </form>
 </div>
 
-<div th:if="${people}">
+<div th:if="${people}">g
     <span>Book is currently free. Assign this book to who?</span>
+
+    <form th:method="PATCH" th:action="@{/books/{id}/assign(id=${book.getBookId()})}" >
+        <label for="person">Select some person from DB</label>
+        <select th:object="${person}" th:field="*{id}" id="person" >
+            <option th:each="persona : ${people}" th:value="${persona.getId()}"
+                    th:text="${persona.getName()}">
+            </option>
+        </select>
+        <input type="submit" value="Assign this book"/>
+    </form>
 </div>
 
 <hr/>
@@ -28,7 +38,7 @@
 
 <form th:method="DELETE" th:action="@{/books/{id}(id=${book.getBookId()})}">
     <input type="submit" value="Delete"/>
-
 </form>
+
 </body>
 </html>
