@@ -17,8 +17,8 @@
 
 <a th:href="@{/books/{id}/edit(id=${book.getBookId()})}">Edit</a>
 
-<!--<form th:method="DELETE" th:action="@{/people/{id}(id=${book.getBookId()})}">-->
-<!--    <input type="submit" value="Delete"/>-->
+<form th:method="DELETE" th:action="@{/books/{id}(id=${book.getBookId()})}">
+    <input type="submit" value="Delete"/>
 
 </form>
 </body>
