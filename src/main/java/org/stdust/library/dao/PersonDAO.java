@@ -22,12 +22,7 @@ public class PersonDAO {
     }
 
     public Person findByID(int id) {
-        return jdbcTemplate.query("SELECT * FROM person WHERE person_id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Person.class))
+        return jdbcTemplate.query("SELECT * FROM person WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Person.class))
                 .stream().findAny().orElse(null);
-    }
-
-    public void saveIntoDB(Person person) {
-        jdbcTemplate.update("INSERT INTO person(name, year_of_birth) VALUES(?, ?)",
-                person.getName(), person.getYearOfBirth());
     }
 }
