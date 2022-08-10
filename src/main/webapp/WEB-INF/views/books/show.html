@@ -18,7 +18,7 @@
     </form>
 </div>
 
-<div th:if="${people}">g
+<div th:if="${people}">
     <span>Book is currently free. Assign this book to who?</span>
 
     <form th:method="PATCH" th:action="@{/books/{id}/assign(id=${book.getBookId()})}" >
