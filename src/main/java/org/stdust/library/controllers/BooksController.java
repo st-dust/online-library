@@ -35,7 +35,9 @@ public class BooksController {
     }
 
     @GetMapping("/{id}")
-    public String create(@PathVariable("id") int id, Model model, @ModelAttribute("person") Person person) {
+    public String create(@PathVariable("id") int id, Model model,
+                         @ModelAttribute("person") Person person) {
+
         model.addAttribute("book", bookDAO.findByID(id));
         Optional<Person> bookOwner = bookDAO.getBookOwner(id);
 
@@ -68,14 +70,15 @@ public class BooksController {
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(@PathVariable("id") int id, Model model) {
+    public String edit(Model model, @PathVariable("id") int id) {
         model.addAttribute("book", bookDAO.findByID(id));
         return "books/edit";
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("book") Book book,
-                         BindingResult bindingResult, @PathVariable("id") int id) {
+    public String update(@ModelAttribute("book") @Valid Book book,
+                         BindingResult bindingResult,
+                         @PathVariable("id") int id) {
         if (bindingResult.hasErrors()) {
             return "books/edit";
         }

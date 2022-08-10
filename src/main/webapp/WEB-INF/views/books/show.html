@@ -34,7 +34,7 @@
 
 <hr/>
 
-<form th:href="@{/books/{id}/edit(id=${book.getBookId()})}">
+<form th:method="GET" th:action="@{/books/{id}/edit(id=${book.getBookId()})}">
     <input type="submit" value="Edit"/>
 </form>
 
