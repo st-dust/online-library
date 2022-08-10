@@ -5,6 +5,23 @@
 Web aplication used to manage customers of library and books.
 Built using Java Spring framework, Maven, Thymeleaf, HTML5, PostgreSQL as database and GIT as Version Control System.
 
+## Reflection
+
+   - This project is my side projet for practicig stack of technologies used for its development.
+   - Putting together all application components gave me learning experience of creating functional aplication
+   - When quering database for needed output I trained my skills in working with relational databases.
+   - I used Java Spring framework because of it's great simplification of development proces of application, so I can focuse more on logics and architecture of an app.
+ Maven and HTML5 usefull and able to provide good output. Thymeleaf was chosen to simplify fronted development integration with backend. For bounding PostgreSQL database and Spring web application i used Spring JDBC.
+ 
+ ## How to run
+ 
+   1. Clone this **src/main** directory from this repository.
+   2. Run PostgreSQL database on your machine.
+   3. Make sure you've installed proper JDBC driver. 
+   4. Save all configuration data about your database (url, login, password) and JDBC driver information in directory **src/main/resources/** in file with name **database.properties**. All the fields should match **database.properties.origin** file that already exists in repository.
+   5. For creation compatible tables for this project you need to execute queries that are in Queries.txt file in your PostgreSQL console.
+   6. Then run application and try it out in your browser.
+   
 ## Project Screen Shots
 
 People:
@@ -26,21 +43,3 @@ Books:
 ![booksNewBook](https://user-images.githubusercontent.com/66835270/183897311-ad70c97f-8bf6-4dd4-a2c8-da6fe7ab9e11.png)
 
 ![booksEditBook](https://user-images.githubusercontent.com/66835270/183897308-304515d2-0da8-40e1-922d-3af3204bd570.png)
-
-## Reflection
-
-   - This project is my side projet for practicig stack of technologies used for its development.
-   - Putting together all application components gave me learning experience of creating functional aplication
-   - When quering database for needed output I trained my skills in working with relational databases.
-   - I used Java Spring framework because of it's great simplification of development proces of application, so I can focuse more on logics and architecture of an app.
- Maven and HTML5 usefull and able to provide good output. Thymeleaf was chosen to simplify fronted development integration with backend. For bounding PostgreSQL database and Spring web application i used Spring JDBC.
- 
- ## How to run
- 
-   1. Clone this **src/main** directory from this repository.
-   2. Run PostgreSQL database on your machine.
-   3. Make sure you've installed proper JDBC driver. 
-   4. Save all configuration data about your database (url, login, password) and JDBC driver information in directory **src/main/resources/** in file with name **database.properties**. All the fields should match **database.properties.origin** file that already exists in repository.
-   5. For creation compatible tables for this project you need to execute queries that are in Queries.txt file in your PostgreSQL console.
-   6. Then run application and try it out in your browser.
-   
